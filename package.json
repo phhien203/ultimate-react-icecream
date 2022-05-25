@@ -1,4 +1,5 @@
 {
+  "proxy": "http://localhost:9999",
   "name": "ultimate-react-icecream",
   "version": "0.1.0",
   "private": true,
