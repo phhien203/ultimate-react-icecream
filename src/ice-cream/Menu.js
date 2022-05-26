@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet';
 import { getMenu } from '../data/iceCreamData';
+import IceCreamImage from './IceScreamImage';
 
 const Menu = () => {
   const [menu, setMenu] = useState([]);
@@ -19,7 +20,9 @@ const Menu = () => {
   return (
     <main>
       <Helmet>
-        <title>Rock you taste buds with one of these! | Ultimate Ice Cream</title>
+        <title>
+          Rock you taste buds with one of these! | Ultimate Ice Cream
+        </title>
       </Helmet>
       <h2 className="main-heading">Rock you taste buds with one of these!</h2>
       {menu.length > 0 ? (
@@ -29,7 +32,9 @@ const Menu = () => {
               return (
                 <li key={id.toString()}>
                   <section className="card">
-                    <div className="image-container"></div>
+                    <div className="image-container">
+                      <IceCreamImage iceCreamId={iceCream.id} />
+                    </div>
                     <div className="text-container">
                       <h3>{iceCream.name}</h3>
                       <div className="content card-content">
