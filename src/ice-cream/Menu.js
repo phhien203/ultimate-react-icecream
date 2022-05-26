@@ -3,10 +3,12 @@ import { Helmet } from 'react-helmet';
 import { getMenu } from '../data/iceCreamData';
 import IceCreamImage from './IceScreamImage';
 import LoaderMessage from '../structure/LoaderMessage';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Menu = () => {
   const [menu, setMenu] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     let isMounted = true;
@@ -21,6 +23,10 @@ const Menu = () => {
       isMounted = false;
     };
   }, []);
+
+  const onItemClickHandler = (to) => {
+    navigate(to);
+  };
 
   return (
     <main>
@@ -41,12 +47,26 @@ const Menu = () => {
             ({ id, iceCream, price, description, inStock, quantity }) => {
               return (
                 <li key={id.toString()}>
-                  <section className="card">
+                  <section
+                    className="card"
+                    onClick={() => {
+                      onItemClickHandler(`/menu-items/${id.toString()}`);
+                    }}
+                  >
                     <div className="image-container">
                       <IceCreamImage iceCreamId={iceCream.id} />
                     </div>
                     <div className="text-container">
-                      <h3>{iceCream.name}</h3>
+                      <h3>
+                        <Link
+                          to={`/menu-items/${id.toString()}`}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                          }}
+                        >
+                          {iceCream.name}
+                        </Link>
+                      </h3>
                       <div className="content card-content">
                         <p className="price">{`$${price.toFixed(2)}`}</p>
                         <p className={`stock${inStock ? '' : ' out'}`}>
