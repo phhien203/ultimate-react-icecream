@@ -13,3 +13,12 @@ export const getMenu = () => {
     });
   });
 };
+
+export const getMenuItem = (menuItemId) => {
+  return axios
+    .get(`/api/menu/${menuItemId}`)
+    .then(({ data }) => data)
+    .catch((err) => {
+      throw err;
+    });
+};

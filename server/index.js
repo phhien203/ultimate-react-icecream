@@ -145,7 +145,9 @@ app.get('/api/menu/:id', (req, res) => {
     10
   );
   if (menuItem) {
-    res.send(menuItem);
+    setTimeout(() => {
+      res.send(menuItem);
+    }, 1000);
   } else {
     res.status(404);
     res.send('Menu item does not exist');
