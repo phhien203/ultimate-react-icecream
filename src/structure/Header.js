@@ -1,6 +1,6 @@
 import React from 'react';
 import iceCreamImg from '../assets/img/ultimate-ice-cream.svg';
-import { NavLink } from 'react-router-dom';
+import FocusLink from './FocusLink';
 
 const Header = () => {
   return (
@@ -10,9 +10,9 @@ const Header = () => {
         Ultimate Ice Cream
       </h1>
       <nav>
-        <NavLink to={{ pathname: '/', state: { focus: true } }} exact="true">
+        <FocusLink to={{ pathname: '/', state: { focus: true } }} exact="true">
           Menu
-        </NavLink>
+        </FocusLink>
       </nav>
     </header>
   );

@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { getMenu } from '../data/iceCreamData';
 import IceCreamImage from './IceScreamImage';
 import LoaderMessage from '../structure/LoaderMessage';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Main from '../structure/Main';
+import FocusLink from '../structure/FocusLink';
 
 const Menu = () => {
   const [menu, setMenu] = useState([]);
@@ -52,14 +53,14 @@ const Menu = () => {
                     </div>
                     <div className="text-container">
                       <h3>
-                        <Link
+                        <FocusLink
                           to={`/menu-items/${id.toString()}`}
                           onClick={(e) => {
                             e.stopPropagation();
                           }}
                         >
                           {iceCream.name}
-                        </Link>
+                        </FocusLink>
                       </h3>
                       <div className="content card-content">
                         <p className="price">{`$${price.toFixed(2)}`}</p>

@@ -29,7 +29,7 @@ const EditIceCream = () => {
       })
       .catch((err) => {
         if (err.response.status === 404) {
-          navigate('/', { replace: true });
+          navigate('/', { replace: true, focus: true });
         }
       });
   }, [menuItemId, navigate]);
@@ -62,7 +62,7 @@ const EditIceCream = () => {
     };
 
     updateMenuItem(newMenuItem).then(() => {
-      navigate('/');
+      navigate('/', { focus: true });
     });
   };
 
