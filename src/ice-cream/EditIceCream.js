@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getMenuItem } from '../data/iceCreamData';
+import { getMenuItem, updateMenuItem } from '../data/iceCreamData';
 import LoaderMessage from '../structure/LoaderMessage';
 import '../styles/form-spacer.scss';
 import IceCreamImage from './IceScreamImage';
@@ -58,7 +58,10 @@ const EditIceCream = () => {
       price: parseFloat(menuItem.price),
       quantity: parseInt(menuItem.quantity),
     };
-    console.log(newMenuItem);
+
+    updateMenuItem(newMenuItem).then(() => {
+      navigate('/');
+    });
   };
 
   return (
