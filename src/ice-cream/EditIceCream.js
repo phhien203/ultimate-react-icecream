@@ -50,6 +50,11 @@ const EditIceCream = () => {
     setMenuItem(newMenuItemData);
   };
 
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    console.log(menuItem);
+  };
+
   return (
     <main>
       <Helmet>
@@ -71,7 +76,7 @@ const EditIceCream = () => {
               <dt>Name :</dt>
               <dd>{menuItem.iceCream.name}</dd>
             </dl>
-            <form>
+            <form onSubmit={onSubmitHandler}>
               <label>Description :</label>
               <textarea
                 name="description"
