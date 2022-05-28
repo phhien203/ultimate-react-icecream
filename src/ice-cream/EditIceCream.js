@@ -32,6 +32,24 @@ const EditIceCream = () => {
       });
   }, [menuItemId, navigate]);
 
+  const onChangeHandler = (e) => {
+    const newMenuItemData = {
+      ...menuItem,
+      [e.target.name]:
+        e.target.type === 'checkbox' ? e.target.checked : e.target.value,
+    };
+
+    if (e.target.name === 'quantity') {
+      newMenuItemData.inStock = e.target.value !== '0';
+    }
+
+    if (e.target.name === 'inStock' && !e.target.checked) {
+      newMenuItemData.quantity = '0';
+    }
+
+    setMenuItem(newMenuItemData);
+  };
+
   return (
     <main>
       <Helmet>
@@ -59,6 +77,7 @@ const EditIceCream = () => {
                 name="description"
                 rows="3"
                 value={menuItem.description}
+                onChange={onChangeHandler}
               ></textarea>
 
               <label>In stock :</label>
@@ -67,12 +86,17 @@ const EditIceCream = () => {
                   type="checkbox"
                   name="inStock"
                   checked={menuItem.inStock}
+                  onChange={onChangeHandler}
                 />
                 <div className="checkbox-wrapper-checked"></div>
               </div>
 
               <label>Quantity :</label>
-              <select name="quantity" value={menuItem.quantity}>
+              <select
+                name="quantity"
+                value={menuItem.quantity}
+                onChange={onChangeHandler}
+              >
                 <option value="0">0</option>
                 <option value="10">10</option>
                 <option value="20">20</option>
@@ -87,6 +111,7 @@ const EditIceCream = () => {
                 step="0.01"
                 name="price"
                 value={menuItem.price}
+                onChange={onChangeHandler}
               />
 
               <div className="button-container">
