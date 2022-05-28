@@ -5,6 +5,7 @@ import { getMenuItem, updateMenuItem } from '../data/iceCreamData';
 import LoaderMessage from '../structure/LoaderMessage';
 import '../styles/form-spacer.scss';
 import IceCreamImage from './IceScreamImage';
+import useUniqueIds from '../hooks/useUniqueIds';
 
 const EditIceCream = () => {
   const [menuItem, setMenuItem] = useState({
@@ -17,6 +18,7 @@ const EditIceCream = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { menuItemId } = useParams();
   const navigate = useNavigate();
+  const [descriptionId, inStockId, quantityId, priceId] = useUniqueIds(4);
 
   useEffect(() => {
     setIsLoading(true);
@@ -86,17 +88,19 @@ const EditIceCream = () => {
               <dd>{menuItem.iceCream.name}</dd>
             </dl>
             <form onSubmit={onSubmitHandler}>
-              <label>Description :</label>
+              <label htmlFor={descriptionId}>Description :</label>
               <textarea
+                id={descriptionId}
                 name="description"
                 rows="3"
                 value={menuItem.description}
                 onChange={onChangeHandler}
               ></textarea>
 
-              <label>In stock :</label>
+              <label htmlFor={inStockId}>In stock :</label>
               <div className="checkbox-wrapper">
                 <input
+                  id={inStockId}
                   type="checkbox"
                   name="inStock"
                   checked={menuItem.inStock}
@@ -105,8 +109,9 @@ const EditIceCream = () => {
                 <div className="checkbox-wrapper-checked"></div>
               </div>
 
-              <label>Quantity :</label>
+              <label htmlFor={quantityId}>Quantity :</label>
               <select
+                id={quantityId}
                 name="quantity"
                 value={menuItem.quantity}
                 onChange={onChangeHandler}
@@ -119,8 +124,9 @@ const EditIceCream = () => {
                 <option value="50">50</option>
               </select>
 
-              <label>Price :</label>
+              <label htmlFor={priceId}>Price :</label>
               <input
+                id={priceId}
                 type="number"
                 step="0.01"
                 name="price"

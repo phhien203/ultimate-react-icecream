@@ -1,5 +1,4 @@
 import axios from 'axios';
-import menu from '../ice-cream/Menu';
 
 export const getMenu = () => {
   return axios.get('/api/menu').then((response) => {
