@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet';
 import { useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const Main = ({ children, headingText, headingLevel = 2 }) => {
   const H = `h${headingLevel}`;
@@ -25,6 +26,12 @@ const Main = ({ children, headingText, headingLevel = 2 }) => {
       {children}
     </main>
   );
+};
+
+Main.propTypes = {
+  headingText: PropTypes.string.isRequired,
+  headingLevel: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  children: PropTypes.node.isRequired,
 };
 
 export default Main;
