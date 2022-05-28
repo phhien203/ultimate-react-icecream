@@ -10,7 +10,9 @@ const Header = () => {
         Ultimate Ice Cream
       </h1>
       <nav>
-        <NavLink to="/" exact="true">Menu</NavLink>
+        <NavLink to={{ pathname: '/', state: { focus: true } }} exact="true">
+          Menu
+        </NavLink>
       </nav>
     </header>
   );

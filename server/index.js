@@ -120,9 +120,7 @@ app.get('/api/menu/stock-ice-creams/:id', (req, res) => {
 });
 
 app.get('/api/menu', (req, res) => {
-  setTimeout(() => {
-    res.send(menuData);
-  }, 500);
+  res.send(menuData);
 });
 
 app.post('/api/menu', (req, res) => {
@@ -145,9 +143,7 @@ app.get('/api/menu/:id', (req, res) => {
     10
   );
   if (menuItem) {
-    setTimeout(() => {
-      res.send(menuItem);
-    }, 1000);
+    res.send(menuItem);
   } else {
     res.status(404);
     res.send('Menu item does not exist');
