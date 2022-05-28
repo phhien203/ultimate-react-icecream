@@ -1,4 +1,5 @@
 import axios from 'axios';
+import menu from '../ice-cream/Menu';
 
 export const getMenu = () => {
   return axios.get('/api/menu').then((response) => {
@@ -17,6 +18,15 @@ export const getMenu = () => {
 export const getMenuItem = (menuItemId) => {
   return axios
     .get(`/api/menu/${menuItemId}`)
+    .then(({ data }) => data)
+    .catch((err) => {
+      throw err;
+    });
+};
+
+export const updateMenuItem = (menuItem) => {
+  return axios
+    .put(`/api/menu/${menuItem.id}`, menuItem)
     .then(({ data }) => data)
     .catch((err) => {
       throw err;
