@@ -52,7 +52,13 @@ const EditIceCream = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    console.log(menuItem);
+
+    const newMenuItem = {
+      ...menuItem,
+      price: parseFloat(menuItem.price),
+      quantity: parseInt(menuItem.quantity),
+    };
+    console.log(newMenuItem);
   };
 
   return (
