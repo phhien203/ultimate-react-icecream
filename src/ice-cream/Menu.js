@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
 import { getMenu } from '../data/iceCreamData';
 import IceCreamImage from './IceScreamImage';
 import LoaderMessage from '../structure/LoaderMessage';
 import { Link, useNavigate } from 'react-router-dom';
+import Main from '../structure/Main';
 
 const Menu = () => {
   const [menu, setMenu] = useState([]);
@@ -29,13 +29,7 @@ const Menu = () => {
   };
 
   return (
-    <main>
-      <Helmet>
-        <title>
-          Rock you taste buds with one of these! | Ultimate Ice Cream
-        </title>
-      </Helmet>
-      <h2 className="main-heading">Rock you taste buds with one of these!</h2>
+    <Main headingText="Rock you taste buds with one of these!">
       <LoaderMessage
         isLoading={isLoading}
         loadingMessage="Loading Menu"
@@ -86,7 +80,7 @@ const Menu = () => {
       ) : (
         !isLoading && <p>Your menu is empty. The sadness!!</p>
       )}
-    </main>
+    </Main>
   );
 };
 

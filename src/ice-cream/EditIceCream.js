@@ -6,6 +6,7 @@ import LoaderMessage from '../structure/LoaderMessage';
 import '../styles/form-spacer.scss';
 import IceCreamImage from './IceScreamImage';
 import useUniqueIds from '../hooks/useUniqueIds';
+import Main from '../structure/Main';
 
 const EditIceCream = () => {
   const [menuItem, setMenuItem] = useState({
@@ -67,11 +68,7 @@ const EditIceCream = () => {
   };
 
   return (
-    <main>
-      <Helmet>
-        <title>Update this beauty | Ultimate Ice Cream</title>
-      </Helmet>
-      <h1 className="main-heading">Update this beauty</h1>
+    <Main headingText="Update this beauty">
       <LoaderMessage
         loadingMessage="Loading ice cream"
         doneMessage="Ice cream loaded."
@@ -143,7 +140,7 @@ const EditIceCream = () => {
           </div>
         </div>
       )}
-    </main>
+    </Main>
   );
 };
 
