@@ -55,16 +55,24 @@ const EditIceCream = () => {
             </dl>
             <form>
               <label>Description :</label>
-              <textarea name="description" rows="3"></textarea>
+              <textarea
+                name="description"
+                rows="3"
+                value={menuItem.description}
+              ></textarea>
 
               <label>In stock :</label>
               <div className="checkbox-wrapper">
-                <input type="checkbox" name="inStock" />
+                <input
+                  type="checkbox"
+                  name="inStock"
+                  checked={menuItem.inStock}
+                />
                 <div className="checkbox-wrapper-checked"></div>
               </div>
 
               <label>Quantity :</label>
-              <select name="quantity">
+              <select name="quantity" value={menuItem.quantity}>
                 <option value="0">0</option>
                 <option value="10">10</option>
                 <option value="20">20</option>
@@ -74,7 +82,12 @@ const EditIceCream = () => {
               </select>
 
               <label>Price :</label>
-              <input type="number" step="0.01" name="price" />
+              <input
+                type="number"
+                step="0.01"
+                name="price"
+                value={menuItem.price}
+              />
 
               <div className="button-container">
                 <button className="ok" type="submit">
