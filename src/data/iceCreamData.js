@@ -31,3 +31,7 @@ export const updateMenuItem = (menuItem) => {
       throw err;
     });
 };
+
+export const deleteMenuItem = (menuItemId) => {
+  return axios.delete(`/api/menu/${menuItemId}`);
+};
