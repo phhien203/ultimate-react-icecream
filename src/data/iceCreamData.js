@@ -48,6 +48,15 @@ export const getMenuItem = (menuItemId) => {
     });
 };
 
+export const addMenuItem = (menuItem) => {
+  return axios
+    .post('/api/menu', menuItem)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw err;
+    });
+};
+
 export const updateMenuItem = (menuItem) => {
   return axios
     .put(`/api/menu/${menuItem.id}`, menuItem)
