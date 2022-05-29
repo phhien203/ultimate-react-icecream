@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import {
-  deleteMenuItem,
-  getIceCream,
-  updateMenuItem,
-} from '../data/iceCreamData';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { addMenuItem, getIceCream, } from '../data/iceCreamData';
 import LoaderMessage from '../structure/LoaderMessage';
 import Main from '../structure/Main';
 import IceCreamForm from './IceCreamForm';
@@ -30,8 +26,10 @@ const AddIceCream = () => {
       });
   }, [searchParams, navigate]);
 
-  const onSubmitHandler = (iceCreamData) => {
-    console.log(iceCreamData);
+  const onSubmitHandler = (menuItemData) => {
+    addMenuItem(menuItemData).then(() => {
+      navigate('/', { focus: true });
+    });
   };
 
   return (
