@@ -26,17 +26,37 @@ const EditIceCream = () => {
 
   const { menuItemId } = useParams();
   const navigate = useNavigate();
-  const [descriptionId, inStockId, quantityId, priceId] = useUniqueIds(4);
+  const [
+    descriptionId,
+    descriptionErrorId,
+    inStockId,
+    quantityId,
+    quantityErrorId,
+    priceId,
+    priceErrorId,
+  ] = useUniqueIds(7);
 
-  const priceError = useValidation(menuItem.price, validatePrice);
-  const quantityError = useValidation(
+  const [priceError, priceErrorConfig] = useValidation(
+    menuItem.price,
+    priceErrorId,
+    hasSubmitted,
+    validatePrice,
+    true
+  );
+  const [quantityError, quantityErrorConfig] = useValidation(
     menuItem.quantity,
+    quantityErrorId,
+    hasSubmitted,
     validateQuantity,
+    false,
     menuItem.inStock
   );
-  const descriptionError = useValidation(
+  const [descriptionError, descriptionErrorConfig] = useValidation(
     menuItem.description,
-    validateDescription
+    descriptionErrorId,
+    hasSubmitted,
+    validateDescription,
+    true
   );
 
   useEffect(() => {
@@ -108,13 +128,15 @@ const EditIceCream = () => {
               <dt>Name :</dt>
               <dd>{menuItem.iceCream.name}</dd>
             </dl>
-            <form onSubmit={onSubmitHandler}>
+            <form onSubmit={onSubmitHandler} noValidate>
+              {/*description*/}
               <label htmlFor={descriptionId}>
                 Description<span aria-hidden="true">*</span> :
               </label>
               <ErrorContainer
                 hasSubmitted={hasSubmitted}
                 errorText={descriptionError}
+                errorId={descriptionErrorId}
               >
                 <textarea
                   id={descriptionId}
@@ -122,9 +144,11 @@ const EditIceCream = () => {
                   rows="3"
                   value={menuItem.description}
                   onChange={onChangeHandler}
+                  {...descriptionErrorConfig}
                 ></textarea>
               </ErrorContainer>
 
+              {/*in stock*/}
               <label htmlFor={inStockId}>In stock :</label>
               <div className="checkbox-wrapper">
                 <input
@@ -137,16 +161,19 @@ const EditIceCream = () => {
                 <div className="checkbox-wrapper-checked"></div>
               </div>
 
+              {/*quantity*/}
               <label htmlFor={quantityId}>Quantity :</label>
               <ErrorContainer
                 hasSubmitted={hasSubmitted}
                 errorText={quantityError}
+                errorId={quantityErrorId}
               >
                 <select
                   id={quantityId}
                   name="quantity"
                   value={menuItem.quantity}
                   onChange={onChangeHandler}
+                  {...quantityErrorConfig}
                 >
                   <option value="0">0</option>
                   <option value="10">10</option>
@@ -157,12 +184,14 @@ const EditIceCream = () => {
                 </select>
               </ErrorContainer>
 
+              {/*price*/}
               <label htmlFor={priceId}>
                 Price<span aria-hidden="true">*</span> :
               </label>
               <ErrorContainer
                 hasSubmitted={hasSubmitted}
                 errorText={priceError}
+                errorId={priceErrorId}
               >
                 <input
                   id={priceId}
@@ -171,6 +200,7 @@ const EditIceCream = () => {
                   name="price"
                   value={menuItem.price}
                   onChange={onChangeHandler}
+                  {...priceErrorConfig}
                 />
               </ErrorContainer>
 
