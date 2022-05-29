@@ -3,6 +3,7 @@ import { getMenu } from '../data/iceCreamData';
 import LoaderMessage from '../structure/LoaderMessage';
 import Main from '../structure/Main';
 import IceCreamCard from './IceCreamCard';
+import IceCreamCardContainer from './IceCreamCardContainer';
 
 const Menu = () => {
   const [menu, setMenu] = useState([]);
@@ -30,31 +31,30 @@ const Menu = () => {
         doneMessage="Loading menu complete."
       />
       {menu.length > 0 ? (
-        <ul className="container">
+        <IceCreamCardContainer>
           {menu.map(
             ({ id, iceCream, price, description, inStock, quantity }) => {
               return (
-                <li key={id.toString()}>
-                  <IceCreamCard
-                    heading={iceCream.name}
-                    iceCreamId={iceCream.id}
-                    to={`/menu-items/${id.toString()}`}
-                  >
-                    <div className="content card-content">
-                      <p className="price">{`$${price.toFixed(2)}`}</p>
-                      <p className={`stock${inStock ? '' : ' out'}`}>
-                        {inStock
-                          ? `${quantity} in stock`
-                          : 'Current out of stock'}
-                      </p>
-                      <p className="description">{description}</p>
-                    </div>
-                  </IceCreamCard>
-                </li>
+                <IceCreamCard
+                  key={id.toString()}
+                  heading={iceCream.name}
+                  iceCreamId={iceCream.id}
+                  to={`/menu-items/${id.toString()}`}
+                >
+                  <div className="content card-content">
+                    <p className="price">{`$${price.toFixed(2)}`}</p>
+                    <p className={`stock${inStock ? '' : ' out'}`}>
+                      {inStock
+                        ? `${quantity} in stock`
+                        : 'Current out of stock'}
+                    </p>
+                    <p className="description">{description}</p>
+                  </div>
+                </IceCreamCard>
               );
             }
           )}
-        </ul>
+        </IceCreamCardContainer>
       ) : (
         !isLoading && <p>Your menu is empty. The sadness!!</p>
       )}
