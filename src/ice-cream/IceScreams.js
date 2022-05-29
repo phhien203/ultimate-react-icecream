@@ -26,7 +26,12 @@ const IceScreams = () => {
       {iceCreams.length > 0 ? (
         <IceCreamCardContainer>
           {iceCreams.map(({ id, name }) => (
-            <IceCreamCard heading={name} iceCreamId={id} key={id} to="/" />
+            <IceCreamCard
+              heading={name}
+              iceCreamId={id}
+              key={id}
+              to={{ pathname: '/menu-items/add', search: `?iceCreamId=${id}` }}
+            />
           ))}
         </IceCreamCardContainer>
       ) : (

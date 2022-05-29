@@ -6,6 +6,7 @@ import Menu from './ice-cream/Menu';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import EditIceCream from './ice-cream/EditIceCream';
 import IceScreams from './ice-cream/IceScreams';
+import AddIceCream from './ice-cream/AddIceCream';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/" exact element={<Menu />} />
         <Route path="ice-creams" element={<IceScreams />} />
+        <Route path="/menu-items/add" exact element={<AddIceCream />} />
         <Route path="/menu-items/:menuItemId" element={<EditIceCream />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
