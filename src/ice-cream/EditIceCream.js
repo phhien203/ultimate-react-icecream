@@ -6,6 +6,12 @@ import '../styles/form-spacer.scss';
 import IceCreamImage from './IceScreamImage';
 import useUniqueIds from '../hooks/useUniqueIds';
 import Main from '../structure/Main';
+import { useValidation } from '../hooks/useValidation';
+import {
+  validateDescription,
+  validatePrice,
+  validateQuantity,
+} from '../validators/validators';
 
 const EditIceCream = () => {
   const [menuItem, setMenuItem] = useState({
@@ -19,6 +25,17 @@ const EditIceCream = () => {
   const { menuItemId } = useParams();
   const navigate = useNavigate();
   const [descriptionId, inStockId, quantityId, priceId] = useUniqueIds(4);
+
+  const priceError = useValidation(menuItem.price, validatePrice);
+  const quantityError = useValidation(
+    menuItem.quantity,
+    validateQuantity,
+    menuItem.inStock
+  );
+  const descriptionError = useValidation(
+    menuItem.description,
+    validateDescription
+  );
 
   useEffect(() => {
     setIsLoading(true);
@@ -54,6 +71,14 @@ const EditIceCream = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+
+    console.log(descriptionError);
+    console.log(priceError);
+    console.log(quantityError);
+
+    if (priceError || quantityError || descriptionError) {
+      return;
+    }
 
     const newMenuItem = {
       ...menuItem,
