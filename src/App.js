@@ -5,14 +5,18 @@ import Footer from './structure/Footer';
 import Menu from './ice-cream/Menu';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import EditIceCream from './ice-cream/EditIceCream';
+import IceScreams from './ice-cream/IceScreams';
 
 function App() {
   return (
     <BrowserRouter>
-      <a href="#main" className="skip-link">Skip to content</a>
+      <a href="#main" className="skip-link">
+        Skip to content
+      </a>
       <Header />
       <Routes>
         <Route path="/" exact element={<Menu />} />
+        <Route path="ice-creams" element={<IceScreams />} />
         <Route path="/menu-items/:menuItemId" element={<EditIceCream />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
