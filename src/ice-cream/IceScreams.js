@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { getIceCreams } from '../data/iceCreamData';
 import LoaderMessage from '../structure/LoaderMessage';
-import Main from "../structure/Main";
+import Main from '../structure/Main';
+import IceCreamCardContainer from './IceCreamCardContainer';
+import IceCreamCard from './IceCreamCard';
 
 const IceScreams = () => {
   const [iceCreams, setIceCreams] = useState([]);
@@ -21,7 +23,17 @@ const IceScreams = () => {
         doneMessage="Load ice creams done."
         isLoading={isLoading}
       />
-      {iceCreams.length}
+      {iceCreams.length > 0 ? (
+        <IceCreamCardContainer>
+          {iceCreams.map(({ id, name }) => (
+            <IceCreamCard heading={name} iceCreamId={id} key={id} to="/" />
+          ))}
+        </IceCreamCardContainer>
+      ) : (
+        !isLoading && (
+          <p className="fully-stocked">Your menu is fully stocked!</p>
+        )
+      )}
     </Main>
   );
 };
