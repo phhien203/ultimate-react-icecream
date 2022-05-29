@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { getMenu } from '../data/iceCreamData';
 import LoaderMessage from '../structure/LoaderMessage';
-import { useNavigate } from 'react-router-dom';
 import Main from '../structure/Main';
 import IceCreamCard from './IceCreamCard';
 
 const Menu = () => {
   const [menu, setMenu] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const navigate = useNavigate();
 
   useEffect(() => {
     let isMounted = true;
@@ -23,10 +21,6 @@ const Menu = () => {
       isMounted = false;
     };
   }, []);
-
-  const onItemClickHandler = (to) => {
-    navigate(to);
-  };
 
   return (
     <Main headingText="Rock you taste buds with one of these!">
