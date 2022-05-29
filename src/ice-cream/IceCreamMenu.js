@@ -5,7 +5,7 @@ import Main from '../structure/Main';
 import IceCreamCard from './IceCreamCard';
 import IceCreamCardContainer from './IceCreamCardContainer';
 
-const Menu = () => {
+const IceCreamMenu = () => {
   const [menu, setMenu] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -62,4 +62,4 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+export default IceCreamMenu;
