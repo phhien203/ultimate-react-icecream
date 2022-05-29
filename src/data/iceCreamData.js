@@ -28,6 +28,17 @@ export const getIceCreams = () => {
   });
 };
 
+export const getIceCream = (id) => {
+  return axios
+    .get(`/api/menu/stock-ice-creams/${id.toString()}`)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
+
 export const getMenuItem = (menuItemId) => {
   return axios
     .get(`/api/menu/${menuItemId}`)
