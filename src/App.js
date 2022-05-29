@@ -9,6 +9,7 @@ import EditIceCream from './ice-cream/EditIceCream';
 function App() {
   return (
     <BrowserRouter>
+      <a href="#main" className="skip-link">Skip to content</a>
       <Header />
       <Routes>
         <Route path="/" exact element={<Menu />} />
