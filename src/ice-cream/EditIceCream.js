@@ -1,6 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getMenuItem, updateMenuItem } from '../data/iceCreamData';
+import {
+  deleteMenuItem,
+  getMenuItem,
+  updateMenuItem,
+} from '../data/iceCreamData';
 import LoaderMessage from '../structure/LoaderMessage';
 import IceCreamImage from './IceScreamImage';
 import useUniqueIds from '../hooks/useUniqueIds';
@@ -118,6 +122,12 @@ const EditIceCream = () => {
     });
   };
 
+  const onDeleteEventHandler = () => {
+    deleteMenuItem(menuItemId).then(() => {
+      navigate('/', { focus: true, replace: true });
+    });
+  };
+
   return (
     <Main headingText="Update this beauty">
       <LoaderMessage
@@ -214,6 +224,14 @@ const EditIceCream = () => {
               <div className="button-container">
                 <button className="ok" type="submit">
                   Save
+                </button>
+
+                <button
+                  className="warning"
+                  type="button"
+                  onClick={onDeleteEventHandler}
+                >
+                  Delete
                 </button>
               </div>
             </form>
