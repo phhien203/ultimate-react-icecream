@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getMenuItem, updateMenuItem } from '../data/iceCreamData';
 import LoaderMessage from '../structure/LoaderMessage';
-import '../styles/form-spacer.scss';
 import IceCreamImage from './IceScreamImage';
 import useUniqueIds from '../hooks/useUniqueIds';
 import Main from '../structure/Main';
@@ -12,6 +11,7 @@ import {
   validatePrice,
   validateQuantity,
 } from '../validators/validators';
+import ErrorContainer from './ErrorContainer';
 
 const EditIceCream = () => {
   const [menuItem, setMenuItem] = useState({
@@ -22,6 +22,8 @@ const EditIceCream = () => {
     iceCream: {},
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
+
   const { menuItemId } = useParams();
   const navigate = useNavigate();
   const [descriptionId, inStockId, quantityId, priceId] = useUniqueIds(4);
@@ -72,9 +74,7 @@ const EditIceCream = () => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
-    console.log(descriptionError);
-    console.log(priceError);
-    console.log(quantityError);
+    setHasSubmitted(true);
 
     if (priceError || quantityError || descriptionError) {
       return;
@@ -109,14 +109,21 @@ const EditIceCream = () => {
               <dd>{menuItem.iceCream.name}</dd>
             </dl>
             <form onSubmit={onSubmitHandler}>
-              <label htmlFor={descriptionId}>Description :</label>
-              <textarea
-                id={descriptionId}
-                name="description"
-                rows="3"
-                value={menuItem.description}
-                onChange={onChangeHandler}
-              ></textarea>
+              <label htmlFor={descriptionId}>
+                Description<span aria-hidden="true">*</span> :
+              </label>
+              <ErrorContainer
+                hasSubmitted={hasSubmitted}
+                errorText={descriptionError}
+              >
+                <textarea
+                  id={descriptionId}
+                  name="description"
+                  rows="3"
+                  value={menuItem.description}
+                  onChange={onChangeHandler}
+                ></textarea>
+              </ErrorContainer>
 
               <label htmlFor={inStockId}>In stock :</label>
               <div className="checkbox-wrapper">
@@ -131,29 +138,41 @@ const EditIceCream = () => {
               </div>
 
               <label htmlFor={quantityId}>Quantity :</label>
-              <select
-                id={quantityId}
-                name="quantity"
-                value={menuItem.quantity}
-                onChange={onChangeHandler}
+              <ErrorContainer
+                hasSubmitted={hasSubmitted}
+                errorText={quantityError}
               >
-                <option value="0">0</option>
-                <option value="10">10</option>
-                <option value="20">20</option>
-                <option value="30">30</option>
-                <option value="40">40</option>
-                <option value="50">50</option>
-              </select>
+                <select
+                  id={quantityId}
+                  name="quantity"
+                  value={menuItem.quantity}
+                  onChange={onChangeHandler}
+                >
+                  <option value="0">0</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                  <option value="40">40</option>
+                  <option value="50">50</option>
+                </select>
+              </ErrorContainer>
 
-              <label htmlFor={priceId}>Price :</label>
-              <input
-                id={priceId}
-                type="number"
-                step="0.01"
-                name="price"
-                value={menuItem.price}
-                onChange={onChangeHandler}
-              />
+              <label htmlFor={priceId}>
+                Price<span aria-hidden="true">*</span> :
+              </label>
+              <ErrorContainer
+                hasSubmitted={hasSubmitted}
+                errorText={priceError}
+              >
+                <input
+                  id={priceId}
+                  type="number"
+                  step="0.01"
+                  name="price"
+                  value={menuItem.price}
+                  onChange={onChangeHandler}
+                />
+              </ErrorContainer>
 
               <div className="button-container">
                 <button className="ok" type="submit">
