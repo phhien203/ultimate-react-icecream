@@ -10,7 +10,7 @@ import {
   validateDescription,
   validatePrice,
   validateQuantity,
-} from '../validators/validators';
+} from '../utils/validators';
 import ErrorContainer from './ErrorContainer';
 
 const EditIceCream = () => {
