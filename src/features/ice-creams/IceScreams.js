@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { getIceCreams } from '../data/iceCreamData';
-import LoaderMessage from '../structure/LoaderMessage';
-import Main from '../structure/Main';
-import IceCreamCardContainer from './IceCreamCardContainer';
-import IceCreamCard from './IceCreamCard';
+import { getIceCreams } from '../../data/iceCreamData';
+import LoaderMessage from '../../structure/LoaderMessage';
+import Main from '../../structure/Main';
+import IceCreamCardContainer from '../../ui/IceCreamCardContainer';
+import IceCreamCard from '../../ui/IceCreamCard';
 
 const IceScreams = () => {
   const [iceCreams, setIceCreams] = useState([]);

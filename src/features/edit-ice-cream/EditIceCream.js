@@ -4,10 +4,10 @@ import {
   deleteMenuItem,
   getMenuItem,
   updateMenuItem,
-} from '../data/iceCreamData';
-import LoaderMessage from '../structure/LoaderMessage';
-import Main from '../structure/Main';
-import IceCreamForm from './IceCreamForm';
+} from '../../data/iceCreamData';
+import LoaderMessage from '../../structure/LoaderMessage';
+import Main from '../../structure/Main';
+import IceCreamForm from '../../ui/IceCreamForm';
 
 const EditIceCream = () => {
   const [menuItem, setMenuItem] = useState({

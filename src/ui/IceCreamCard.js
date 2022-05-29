@@ -4,7 +4,7 @@ import FocusLink from '../structure/FocusLink';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const IceCreamCard = ({ children, to, iceCreamId, heading: heading }) => {
+const IceCreamCard = ({ children, to, iceCreamId, heading }) => {
   const navigate = useNavigate();
 
   const onItemClickHandler = () => {

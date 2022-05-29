@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { getMenu } from '../data/iceCreamData';
-import LoaderMessage from '../structure/LoaderMessage';
-import Main from '../structure/Main';
-import IceCreamCard from './IceCreamCard';
-import IceCreamCardContainer from './IceCreamCardContainer';
+import { getMenu } from '../../data/iceCreamData';
+import LoaderMessage from '../../structure/LoaderMessage';
+import Main from '../../structure/Main';
+import IceCreamCard from '../../ui/IceCreamCard';
+import IceCreamCardContainer from '../../ui/IceCreamCardContainer';
 
 const IceCreamMenu = () => {
   const [menu, setMenu] = useState([]);

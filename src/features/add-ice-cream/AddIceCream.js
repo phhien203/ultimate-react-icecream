@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { addMenuItem, getIceCream, } from '../data/iceCreamData';
-import LoaderMessage from '../structure/LoaderMessage';
-import Main from '../structure/Main';
-import IceCreamForm from './IceCreamForm';
+import { addMenuItem, getIceCream, } from '../../data/iceCreamData';
+import LoaderMessage from '../../structure/LoaderMessage';
+import Main from '../../structure/Main';
+import IceCreamForm from '../../ui/IceCreamForm';
 
 const AddIceCream = () => {
   const [iceCream, setIceCream] = useState({});
