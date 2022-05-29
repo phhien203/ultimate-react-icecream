@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getMenuItem, updateMenuItem } from '../data/iceCreamData';
 import LoaderMessage from '../structure/LoaderMessage';
@@ -23,6 +23,7 @@ const EditIceCream = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState(false);
+  const formRef = useRef(null);
 
   const { menuItemId } = useParams();
   const navigate = useNavigate();
@@ -97,6 +98,12 @@ const EditIceCream = () => {
     setHasSubmitted(true);
 
     if (priceError || quantityError || descriptionError) {
+      setTimeout(() => {
+        const errorControl = formRef.current.querySelector(
+          '[aria-invalid="true"]'
+        );
+        errorControl.focus();
+      });
       return;
     }
 
@@ -128,7 +135,7 @@ const EditIceCream = () => {
               <dt>Name :</dt>
               <dd>{menuItem.iceCream.name}</dd>
             </dl>
-            <form onSubmit={onSubmitHandler} noValidate>
+            <form onSubmit={onSubmitHandler} ref={formRef} noValidate>
               {/*description*/}
               <label htmlFor={descriptionId}>
                 Description<span aria-hidden="true">*</span> :
